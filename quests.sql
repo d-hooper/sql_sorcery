@@ -105,8 +105,8 @@ FROM guilds;
 -- TRIGGER EXAMPLE
 DELIMITER $$ CREATE TRIGGER on_update_quests
 AFTER
-UPDATE ON quests FOR EACH ROW BEGIN CALL UpdateGuildRep(NEW.completedById), CALL
-  IncreaseHeroLevel(NEW.completedById);
+UPDATE ON quests FOR EACH ROW BEGIN CALL UpdateGuildRep(NEW.completedById),
+  CALL IncreaseHeroLevel(NEW.completedById);
 END $$ DELIMITER;
 --UPDATE
 UPDATE quests
@@ -118,6 +118,4 @@ CREATE PROCEDURE IncreaseHeroLevel(IN guildId INT) BEGIN
 UPDATE heroes
 SET level = level + 1
 WHERE heroes.guildId = guildId;
-END $$
-
-TRIGGERS;
+END $$ TRIGGERS;
